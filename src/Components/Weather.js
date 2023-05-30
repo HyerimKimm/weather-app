@@ -50,11 +50,20 @@ const Weather = ({keyword,apiKey}) => {
         <main className={styles.main}>
             <section>
                 {keyword}의 날씨는....<br/>
-                apiKey : {apiKey}<br/>
-                {weatherInfo.main==='Clear'?<img src="../assets/images/sunny.jpg"/>:null}
                 lat:{weatherInfo.lat}<br/>
                 lon:{weatherInfo.lon}<br/>
                 weather:{weatherInfo.main}<br/>
+                {
+                    weatherInfo.main==='Clear'?
+                    <img className={styles.weatherImg} src={require('../assets/images/sunny.png')}/>:
+                    weatherInfo.main==='Clouds'?
+                    <img className={styles.weatherImg} src={require('../assets/images/cloudy.png')}/>:
+                    weatherInfo.main==='Mist'?
+                    <img className={styles.weatherImg} src={require('../assets/images/mist.png')}/>:
+                    weatherInfo.main==='Rain'?
+                    <img className={styles.weatherImg} src={require('../assets/images/rain.png')}/>:
+                    null
+                }
             </section>
         </main>
     );
