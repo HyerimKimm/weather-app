@@ -3,6 +3,7 @@ import styles from './Weather.module.css'
 
 const Weather = ({keyword,apiKey}) => {
     let [weatherInfo, setWeatherInfo] = useState({});
+    let [isLoading, setIsLoading] = useState(true);
     let lat=0, lon=0;
     let weather={};
 
@@ -31,6 +32,7 @@ const Weather = ({keyword,apiKey}) => {
         weather = json.weather[0];
     }
     const API실행 = async (keyword) => {
+        setIsLoading(true);
         const geocodingAPI = `http://api.openweathermap.org/geo/1.0/direct?q=${keyword}&limit=5&appid=${apiKey}`;
         await geocodingAPI실행(geocodingAPI);
         const weatherAPI = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`;
@@ -40,6 +42,7 @@ const Weather = ({keyword,apiKey}) => {
             lon:`${lon}`,
             ...weather
         });
+        setIsLoading(false);
     }
     
     useEffect(()=>{
@@ -48,11 +51,11 @@ const Weather = ({keyword,apiKey}) => {
 
     return (
         <main className={styles.main}>
-            <section>
-                {keyword}의 날씨는....<br/>
-                lat:{weatherInfo.lat}<br/>
-                lon:{weatherInfo.lon}<br/>
-                weather:{weatherInfo.main}<br/>
+            {
+                isLoading?<img className={styles.loadingImg} src={require('../assets/images/loading.gif')}/>:
+                (<section className='weatherInfo'>
+                <h1 className={styles.title}>{keyword}의 날씨는....</h1>
+
                 {
                     weatherInfo.main==='Clear'?
                     <img className={styles.weatherImg} src={require('../assets/images/sunny.png')}/>:
@@ -64,7 +67,10 @@ const Weather = ({keyword,apiKey}) => {
                     <img className={styles.weatherImg} src={require('../assets/images/rain.png')}/>:
                     null
                 }
-            </section>
+                                <div>lat:{Math.round(weatherInfo.lat)}, lon:{Math.round(weatherInfo.lon)}</div>
+                <div>weather:{weatherInfo.main}</div>
+            </section>)
+            }
         </main>
     );
 };

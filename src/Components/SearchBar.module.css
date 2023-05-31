@@ -1,0 +1,14 @@
+.searchBar {
+    color: rgb(80, 80, 80);
+    width: 20rem;
+    height: 2rem;
+    font-size: 1rem;
+    border: 1px solid #d0cfcf;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 0 1px rgba(0,0,0,0.05);
+}
+.searchBar:hover {
+    color: rgb(80, 80, 80);
+    border-color: #d0cfcf;
+    box-shadow: 0 0 1px 3px rgba(59, 153, 252, .7);
+} 

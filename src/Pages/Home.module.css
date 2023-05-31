@@ -1,3 +1,6 @@
+* {
+    font-family: 'nanumSquare';
+}
 .home {
     display: flex;
     flex-direction: column;

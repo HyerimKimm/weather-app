@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "nanumSquare";
+  src: url("assets/fonts/NanumSquareR.ttf");
+}
+@font-face {
+  font-family: "nanumStartAgain";
+  src: url("assets/fonts/NanumStartAgain.ttf");
+}
 .App {
   text-align: center;
 }
